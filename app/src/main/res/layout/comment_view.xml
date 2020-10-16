@@ -20,7 +20,7 @@
         android:layout_marginLeft="@dimen/size_8dp" />
 
     <TextView
-        android:id="@+id/userName"
+        android:id="@+id/txtName"
         android:layout_width="@dimen/size_0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12dp"
@@ -36,16 +36,16 @@
         tools:text="Atiq" />
 
     <TextView
-        android:id="@+id/postDate"
+        android:id="@+id/txtDate"
         android:layout_width="@dimen/size_0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_2dp"
         android:fontFamily="@font/asap_medium"
         android:textColor="@color/grey_dark"
         android:textSize="@dimen/size_12sp"
-        app:layout_constraintEnd_toEndOf="@id/userName"
-        app:layout_constraintStart_toStartOf="@id/userName"
-        app:layout_constraintTop_toBottomOf="@id/userName"
+        app:layout_constraintEnd_toEndOf="@id/txtName"
+        app:layout_constraintStart_toStartOf="@id/txtName"
+        app:layout_constraintTop_toBottomOf="@id/txtName"
         tools:text="15 Feb" />
 
     <TextView
@@ -57,16 +57,16 @@
         android:textSize="@dimen/size_14sp"
         android:textColor="@color/black"
         android:fontFamily="@font/antic_slab"
-        app:layout_constraintStart_toStartOf="@id/userName"
-        app:layout_constraintTop_toBottomOf="@id/postDate"
-        app:layout_constraintEnd_toEndOf="@id/userName"/>
+        app:layout_constraintStart_toStartOf="@id/txtName"
+        app:layout_constraintTop_toBottomOf="@id/txtDate"
+        app:layout_constraintEnd_toEndOf="@id/txtName"/>
 
     <View
         android:layout_width="@dimen/size_0dp"
         android:layout_height="@dimen/size_1dp"
         android:background="@color/grey_light"
         app:layout_constraintStart_toEndOf="@id/episodeImage"
-        app:layout_constraintEnd_toEndOf="@id/userName"
+        app:layout_constraintEnd_toEndOf="@id/txtName"
         app:layout_constraintTop_toTopOf="@id/episodeImage"/>
 
     <ImageView
@@ -75,11 +75,11 @@
         android:layout_height="@dimen/size_40dp"
         android:layout_marginTop="@dimen/size_8dp"
         android:contentDescription="@string/app_name"
-        app:layout_constraintStart_toStartOf="@id/userName"
+        app:layout_constraintStart_toStartOf="@id/txtName"
         app:layout_constraintTop_toBottomOf="@id/comment"/>
 
     <TextView
-        android:id="@+id/episodeTitle"
+        android:id="@+id/txtTitle"
         android:layout_width="@dimen/size_0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_8dp"
@@ -90,7 +90,7 @@
         android:textSize="@dimen/size_14sp"
         android:textColor="@color/black"
         android:fontFamily="@font/asap_medium"
-        app:layout_constraintEnd_toEndOf="@id/userName"
+        app:layout_constraintEnd_toEndOf="@id/txtName"
         app:layout_constraintStart_toEndOf="@id/episodeImage"
         app:layout_constraintTop_toTopOf="@id/episodeImage"
         app:layout_constraintBottom_toBottomOf="@id/episodeImage"
@@ -103,11 +103,11 @@
         android:layout_height="@dimen/size_1dp"
         android:background="@color/grey_light"
         app:layout_constraintStart_toEndOf="@id/episodeImage"
-        app:layout_constraintEnd_toEndOf="@id/userName"
+        app:layout_constraintEnd_toEndOf="@id/txtName"
         app:layout_constraintBottom_toBottomOf="@id/episodeImage"/>
 
     <TextView
-        android:id="@+id/commentCount"
+        android:id="@+id/txtCommentCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_16dp"
@@ -116,12 +116,12 @@
         android:drawableStart="@drawable/ic_comment_small"
         android:textSize="@dimen/size_12sp"
         android:textColor="@color/grey"
-        app:layout_constraintStart_toStartOf="@id/userName"
+        app:layout_constraintStart_toStartOf="@id/txtName"
         app:layout_constraintTop_toBottomOf="@id/line1"
         android:drawableLeft="@drawable/ic_comment_small" />
 
     <TextView
-        android:id="@+id/likeBtn"
+        android:id="@+id/txtLikeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_16dp"
@@ -130,13 +130,13 @@
         android:drawableStart="@drawable/ic_thumb_up"
         android:textSize="@dimen/size_12sp"
         android:textColor="@color/grey"
-        app:layout_constraintStart_toEndOf="@+id/commentCount"
-        app:layout_constraintTop_toTopOf="@id/commentCount"
+        app:layout_constraintStart_toEndOf="@+id/txtCommentCount"
+        app:layout_constraintTop_toTopOf="@id/txtCommentCount"
         android:layout_marginLeft="@dimen/size_16dp"
         android:drawableLeft="@drawable/ic_thumb_up" />
 
     <TextView
-        android:id="@+id/shareCount"
+        android:id="@+id/txtShareCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_16dp"
@@ -145,8 +145,8 @@
         android:drawableStart="@drawable/ic_share_small"
         android:textSize="@dimen/size_12sp"
         android:textColor="@color/grey"
-        app:layout_constraintStart_toEndOf="@+id/likeBtn"
-        app:layout_constraintTop_toTopOf="@id/commentCount"
+        app:layout_constraintStart_toEndOf="@+id/txtLikeBtn"
+        app:layout_constraintTop_toTopOf="@id/txtCommentCount"
         android:layout_marginLeft="@dimen/size_16dp"
         android:drawableLeft="@drawable/ic_share_small" />
 
@@ -156,9 +156,9 @@
         android:layout_marginStart="@dimen/size_16dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_more_vert"
-        app:layout_constraintEnd_toEndOf="@id/userName"
-        app:layout_constraintTop_toTopOf="@id/commentCount"
-        app:layout_constraintBottom_toBottomOf="@id/commentCount"
+        app:layout_constraintEnd_toEndOf="@id/txtName"
+        app:layout_constraintTop_toTopOf="@id/txtCommentCount"
+        app:layout_constraintBottom_toBottomOf="@id/txtCommentCount"
         android:layout_marginLeft="@dimen/size_16dp" />
 
     <View
@@ -168,5 +168,5 @@
         android:background="@color/grey_light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/commentCount"/>
+        app:layout_constraintTop_toBottomOf="@id/txtCommentCount"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

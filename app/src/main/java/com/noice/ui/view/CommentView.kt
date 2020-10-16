@@ -72,13 +72,13 @@ class CommentView : FrameLayout {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val userImage : ImageView = view.findViewById(R.id.userImage)
-        val userName : TextView = view.findViewById(R.id.userName)
-        val txtPostDate : TextView = view.findViewById(R.id.postDate)
+        val userName : TextView = view.findViewById(R.id.txtName)
+        val txtPostDate : TextView = view.findViewById(R.id.txtDate)
         val txtComment : TextView = view.findViewById(R.id.comment)
         val episodeImage : ImageView = view.findViewById(R.id.episodeImage)
-        val txtTitle : TextView = view.findViewById(R.id.episodeTitle)
-        val commentCount : TextView = view.findViewById(R.id.commentCount)
-        val likeBtn : TextView = view.findViewById(R.id.likeBtn)
-        val shareCount : TextView = view.findViewById(R.id.shareCount)
+        val txtTitle : TextView = view.findViewById(R.id.txtTitle)
+        val commentCount : TextView = view.findViewById(R.id.txtCommentCount)
+        val likeBtn : TextView = view.findViewById(R.id.txtLikeBtn)
+        val shareCount : TextView = view.findViewById(R.id.txtShareCount)
     }
 }

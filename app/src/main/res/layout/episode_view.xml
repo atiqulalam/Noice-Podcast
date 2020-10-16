@@ -26,14 +26,14 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
-        android:id="@+id/episodeTitle"
+        android:id="@+id/txtTitle"
         android:layout_width="@dimen/size_0dp"
         android:layout_height="@dimen/size_0dp"
         android:layout_marginStart="@dimen/size_12dp"
         android:layout_marginEnd="@dimen/size_16dp"
         android:layout_marginBottom="@dimen/size_8dp"
         android:ellipsize="end"
-        tools:text="What can Rishis see that you can't?"
+        tools:text="What can we do for you?"
         android:textColor="@color/black"
         android:textSize="@dimen/size_14sp"
         app:layout_constraintStart_toEndOf="@id/episodeImage"
@@ -53,7 +53,7 @@
         tools:text="Feb 26"
         android:textColor="@color/grey"
         android:textSize="@dimen/size_12sp"
-        app:layout_constraintStart_toStartOf="@id/episodeTitle"
+        app:layout_constraintStart_toStartOf="@id/txtTitle"
         app:layout_constraintBottom_toBottomOf="parent"
         android:drawableLeft="@drawable/ic_calendar" />
 

@@ -56,7 +56,7 @@ class EpisodeView : FrameLayout {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val episodeImage: ImageView = view.findViewById(R.id.episodeImage)
-        val episodeTitle: TextView = view.findViewById(R.id.episodeTitle)
+        val episodeTitle: TextView = view.findViewById(R.id.txtTitle)
         val episodeDate: TextView = view.findViewById(R.id.episodeDate)
         val episodeDuration: TextView = view.findViewById(R.id.episodeDuration)
     }
