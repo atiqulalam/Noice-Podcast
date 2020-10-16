@@ -19,7 +19,7 @@ class PodCastDetailViewModel : ViewModel() {
     fun getEpisodes() = repository.getEpisodes()
 
     fun getIsSubscribed(podCastId: String) = liveData(Dispatchers.IO) {
-        val str = NoiceApplication.sharedPref.getSubscribedPodCasts()
+        val str = NoiceApplication.sharedNoicePref.getSubscribedPodCasts()
         if(str.isNotEmpty()) {
             val listType = object : TypeToken<ArrayList<String>>() {}.type
             val subscribedPodCasts : List<String> = Gson().fromJson(str, listType)
@@ -30,7 +30,7 @@ class PodCastDetailViewModel : ViewModel() {
     }
 
     fun subscribe(podCastId: String) = liveData(Dispatchers.IO) {
-        val str = NoiceApplication.sharedPref.getSubscribedPodCasts()
+        val str = NoiceApplication.sharedNoicePref.getSubscribedPodCasts()
         val subscribedPodCasts = ArrayList<String>()
         if(str.isNotEmpty()) {
             val listType = object : TypeToken<ArrayList<String>>() {}.type
@@ -47,11 +47,11 @@ class PodCastDetailViewModel : ViewModel() {
             subscribedPodCasts.add(podCastId)
             emit(Resource.success(true))
         }
-        NoiceApplication.sharedPref.saveSubscribedPodCasts(Gson().toJson(subscribedPodCasts))
+        NoiceApplication.sharedNoicePref.saveSubscribed(Gson().toJson(subscribedPodCasts))
     }
 
     fun saveComment(comment: Comment) = liveData(Dispatchers.IO) {
-        val str = NoiceApplication.sharedPref.getComments()
+        val str = NoiceApplication.sharedNoicePref.getComments()
         val comments = ArrayList<Comment>()
         if(str.isNotEmpty()) {
             val listType = object : TypeToken<ArrayList<Comment>>() {}.type
@@ -60,12 +60,12 @@ class PodCastDetailViewModel : ViewModel() {
         }
 
         comments.add(comment)
-        NoiceApplication.sharedPref.saveComments(Gson().toJson(comments))
+        NoiceApplication.sharedNoicePref.saveComments(Gson().toJson(comments))
         emit(Resource.success(true))
     }
 
-    fun getLocallySavedComments(podCastId: String) = liveData(Dispatchers.IO) {
-        val str = NoiceApplication.sharedPref.getComments()
+    fun getSavedSavedComments(podCastId: String) = liveData(Dispatchers.IO) {
+        val str = NoiceApplication.sharedNoicePref.getComments()
         if(str.isNotEmpty()) {
             val listType = object : TypeToken<ArrayList<Comment>>() {}.type
             val list : ArrayList<Comment> = Gson().fromJson(str, listType)

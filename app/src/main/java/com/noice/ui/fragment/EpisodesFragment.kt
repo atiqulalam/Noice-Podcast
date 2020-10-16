@@ -71,9 +71,9 @@ class EpisodesFragment : Fragment() {
 
     private fun initViews() {
         episodeAdapter = EpisodeAdapter(episodes)
-        episodeRecyclerView.adapter = episodeAdapter
+        rvEpisod.adapter = episodeAdapter
 
-        episodesCount.text = ctx.getString(R.string.episodes, episodes.size)
+        txtCount.text = ctx.getString(R.string.episodes, episodes.size)
 
         errorView.setListener(object : ErrorView.ErrorCallBack {
             override fun onRetryClick() {
@@ -93,7 +93,7 @@ class EpisodesFragment : Fragment() {
                     episodes.clear()
                     episodes.addAll(it.data)
                     episodeAdapter?.notifyDataSetChanged()
-                    episodesCount.text = ctx.getString(R.string.episodes, episodes.size)
+                    txtCount.text = ctx.getString(R.string.episodes, episodes.size)
                     errorView.hideLoading()
                 } else {
                     errorView.showEmptyView()

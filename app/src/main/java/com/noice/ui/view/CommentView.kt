@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.noice.R
 import com.noice.model.Comment
 import com.noice.utils.ImageUtils
-import com.noice.utils.Utils
 
+/**
+ * Created By Atiq
+ */
 class CommentView : FrameLayout {
 
     private lateinit var ctx: Context
@@ -46,16 +48,16 @@ class CommentView : FrameLayout {
             ImageUtils.setImageWithCircleCrop(ctx, viewHolder.userImage, comment.user?.image_url, R.drawable.ic_user_placeholder)
         }
         if(!comment.post_date.isNullOrEmpty()) {
-            viewHolder.postDate.text = comment.post_date
+            viewHolder.txtPostDate.text = comment.post_date
         }
         if(!comment.comment.isNullOrEmpty()) {
-            viewHolder.comment.text = comment.comment
+            viewHolder.txtComment.text = comment.comment
         }
         if(!comment.episode?.image_url.isNullOrEmpty()) {
             ImageUtils.setImageByUrlAndCache(ctx, viewHolder.episodeImage, comment.episode?.image_url)
         }
         if(!comment.episode?.title.isNullOrEmpty()) {
-            viewHolder.episodeTitle.text = comment.episode?.title
+            viewHolder.txtTitle.text = comment.episode?.title
         }
         if(comment.child_count != null && comment.child_count != 0) {
             viewHolder.commentCount.text = comment.child_count.toString()
@@ -71,10 +73,10 @@ class CommentView : FrameLayout {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val userImage : ImageView = view.findViewById(R.id.userImage)
         val userName : TextView = view.findViewById(R.id.userName)
-        val postDate : TextView = view.findViewById(R.id.postDate)
-        val comment : TextView = view.findViewById(R.id.comment)
+        val txtPostDate : TextView = view.findViewById(R.id.postDate)
+        val txtComment : TextView = view.findViewById(R.id.comment)
         val episodeImage : ImageView = view.findViewById(R.id.episodeImage)
-        val episodeTitle : TextView = view.findViewById(R.id.episodeTitle)
+        val txtTitle : TextView = view.findViewById(R.id.episodeTitle)
         val commentCount : TextView = view.findViewById(R.id.commentCount)
         val likeBtn : TextView = view.findViewById(R.id.likeBtn)
         val shareCount : TextView = view.findViewById(R.id.shareCount)

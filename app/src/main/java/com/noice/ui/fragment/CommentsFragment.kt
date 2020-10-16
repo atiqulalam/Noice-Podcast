@@ -20,29 +20,31 @@ import com.noice.ui.view.ErrorView
 import kotlinx.android.synthetic.main.fragment_comments.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
-
+/**
+ * Created By Atiq
+ */
 class CommentsFragment : Fragment() {
 
     companion object {
-        private const val POD_CAST_DATA = "POD_CAST_DATA"
+        private const val BANNER = "BANNER"
 
-        fun newInstance(podCast: Banner) : CommentsFragment {
+        fun newInstance(banner: Banner) : CommentsFragment {
             val fragment = CommentsFragment()
             val bundle = Bundle()
-            bundle.putParcelable(POD_CAST_DATA, podCast)
+            bundle.putParcelable(BANNER, banner)
             fragment.arguments = bundle
             return fragment
         }
     }
 
-    private var podCast: Banner? = null
+    private var banner: Banner? = null
     private var commentAdapter: CommentAdapter? = null
     private lateinit var viewModel: PodCastDetailViewModel
-    private var comments = ArrayList<Comment>()
+    private var commentList = ArrayList<Comment>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        podCast = arguments?.getParcelable(POD_CAST_DATA)
+        banner = arguments?.getParcelable(BANNER)
         EventBus.getDefault().register(this)
     }
 
@@ -61,15 +63,15 @@ class CommentsFragment : Fragment() {
 
         initViews()
 
-        if(podCast?.id != null) {
+        if(banner?.id != null) {
             getComments()
         }
     }
 
     private fun initViews() {
-        commentAdapter = CommentAdapter(comments)
-        commentRecyclerView.adapter = commentAdapter
-        commentRecyclerView.setHasFixedSize(true)
+        commentAdapter = CommentAdapter(commentList)
+        rvComment.adapter = commentAdapter
+        rvComment.setHasFixedSize(true)
 
         errorView.setListener(object : ErrorView.ErrorCallBack {
             override fun onRetryClick() {
@@ -82,8 +84,8 @@ class CommentsFragment : Fragment() {
     private fun getComments() {
         viewModel.getComments().observe(this, Observer {
             if(it?.status == ResponseStatus.SUCCESS && !it.data.isNullOrEmpty()) {
-                comments.clear()
-                comments.addAll(it.data)
+                commentList.clear()
+                commentList.addAll(it.data)
             }
 
             getLocallySavedComments()
@@ -91,13 +93,13 @@ class CommentsFragment : Fragment() {
     }
 
     private fun getLocallySavedComments() {
-        if(podCast?.id != null) {
-            viewModel.getLocallySavedComments(podCast?.id.toString()).observe(this, Observer {
+        if(banner?.id != null) {
+            viewModel.getSavedSavedComments(banner?.id.toString()).observe(this, Observer {
                 if(!it.data.isNullOrEmpty()) {
-                    comments.addAll(it.data)
+                    commentList.addAll(it.data)
                     commentAdapter?.notifyDataSetChanged()
                     errorView.hideLoading()
-                } else if(comments.isNotEmpty()) {
+                } else if(commentList.isNotEmpty()) {
                     commentAdapter?.notifyDataSetChanged()
                     errorView.hideLoading()
                 } else {
@@ -108,8 +110,8 @@ class CommentsFragment : Fragment() {
     }
 
     private fun saveComment(comment: Comment) {
-        if(podCast?.id != null) {
-            comment.id = podCast?.id
+        if(banner?.id != null) {
+            comment.id = banner?.id
             comment.child_count = 0
             comment.like_count = 0
             comment.share_count = 0
@@ -123,7 +125,7 @@ class CommentsFragment : Fragment() {
 
             viewModel.saveComment(comment).observe(this, Observer {
                 if(it?.data == true) {
-                    comments.add(comment)
+                    commentList.add(comment)
                     commentAdapter?.notifyDataSetChanged()
                 }
             })

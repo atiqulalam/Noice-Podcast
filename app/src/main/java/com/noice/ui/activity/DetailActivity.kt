@@ -106,13 +106,13 @@ class DetailActivity : AppCompatActivity() {
             }
         })
 
-        addComment.setOnEditorActionListener { _, actionId, _ ->
+        edtComment.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEND) {
-                if(addComment.text.toString().isNotEmpty()) {
+                if(edtComment.text.toString().isNotEmpty()) {
                     val comment = Comment()
-                    comment.comment = addComment.text.toString()
+                    comment.comment = edtComment.text.toString()
                     EventBus.getDefault().post(comment)
-                    addComment.setText("")
+                    edtComment.setText("")
                 }
             }
             false
@@ -123,18 +123,18 @@ class DetailActivity : AppCompatActivity() {
         }
 
         if(podCast?.title != null) {
-            podCastTitle.text = podCast?.title
+            txtTitle.text = podCast?.title
         }
 
         if(podCast?.subscriber != null) {
-            podCastBookMarkCount.text = podCast?.subscriber.toString()
+            txtBookMarkCount.text = podCast?.subscriber.toString()
         }
 
         if(podCast?.view != null) {
-            podCastViews.text = podCast?.view.toString()
+            txtViews.text = podCast?.view.toString()
         }
 
-        subscribe.setOnClickListener {
+        txtSubscribe.setOnClickListener {
             subscribe()
         }
     }
@@ -155,11 +155,11 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setSubscribeButton() {
         if(isSubscribed) {
-            subscribe.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_bookmark_small,0,0,0)
-            subscribe.text = getString(R.string.subscribed)
+            txtSubscribe.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_bookmark_small,0,0,0)
+            txtSubscribe.text = getString(R.string.subscribed)
         } else {
-            subscribe.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_bookmark_unselected,0,0,0)
-            subscribe.text = getString(R.string.subscribe)
+            txtSubscribe.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_bookmark_unselected,0,0,0)
+            txtSubscribe.text = getString(R.string.subscribe)
         }
     }
 

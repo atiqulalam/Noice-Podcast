@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
+import com.noice.NoiceApplication
 import com.noice.R
 import com.noice.model.Banner
 import com.noice.viewmodel.DiscoverViewModel
@@ -67,6 +68,7 @@ class DiscoverFragment : Fragment() {
         discoverViewModel.getBanners().observe(this, Observer {
             hideLoading()
             if(it?.status == ResponseStatus.SUCCESS && !it.data.isNullOrEmpty()) {
+                banners.clear()
                 banners.addAll(it.data)
                 bannerView.setData(banners)
             }else {

@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/episodesCount"
+            android:id="@+id/txtCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -63,7 +63,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/episodeRecyclerView"
+        android:id="@+id/rvEpisod"
         android:layout_width="@dimen/size_0dp"
         android:layout_height="@dimen/size_0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

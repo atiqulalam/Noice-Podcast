@@ -3,8 +3,6 @@ package com.noice.ui.activity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.noice.R
 import com.noice.ui.fragment.*
 import kotlinx.android.synthetic.main.activity_home.*

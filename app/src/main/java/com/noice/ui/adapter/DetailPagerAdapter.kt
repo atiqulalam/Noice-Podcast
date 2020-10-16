@@ -6,23 +6,19 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.noice.model.Banner
 import com.noice.ui.fragment.CommentsFragment
 import com.noice.ui.fragment.EpisodesFragment
-import com.noice.ui.fragment.DetailsFragment
 
-class DetailPagerAdapter(fm: FragmentManager, private val podCast: Banner) : FragmentPagerAdapter(fm) {
+class DetailPagerAdapter(fm: FragmentManager, private val banner: Banner) : FragmentPagerAdapter(fm) {
 
-    private val titles = arrayListOf("Episodes", "Details", "Comments")
+    private val titles = arrayListOf("Episodes", "Comments")
 
     override fun getItem(position: Int): Fragment {
         var fragment: Fragment? = null
         when (position) {
             0 -> {
-                fragment = EpisodesFragment.newInstance(podCast)
+                fragment = EpisodesFragment.newInstance(banner)
             }
             1 -> {
-                fragment = DetailsFragment.newInstance(podCast)
-            }
-            2 -> {
-                fragment = CommentsFragment.newInstance(podCast)
+                fragment = CommentsFragment.newInstance(banner)
             }
         }
         return fragment!!

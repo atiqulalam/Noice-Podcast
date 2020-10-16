@@ -15,7 +15,9 @@ import com.noice.ui.adapter.BannerAdapter
 import kotlinx.android.synthetic.main.banner_view_layout.view.*
 import java.util.*
 
-
+/**
+ * Created By Atiq
+ */
 class BannerView : FrameLayout {
 
     private var currentPage = 0

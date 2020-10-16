@@ -5,7 +5,7 @@ import android.content.Context
 import com.noice.rest.CustomError
 import com.noice.rest.RestInterface
 import com.noice.utils.NetworkUtils
-import com.noice.utils.PrefUtils
+import com.noice.utils.NoicePref
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -15,7 +15,7 @@ import retrofit2.Response
 class NoiceApplication : Application() {
 
     companion object {
-        lateinit var sharedPref: PrefUtils
+        lateinit var sharedNoicePref: NoicePref
         private lateinit var ctx: Context
 
         fun <T> doServerCall(
@@ -64,6 +64,6 @@ class NoiceApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         ctx = applicationContext
-        sharedPref = PrefUtils(ctx)
+        sharedNoicePref = NoicePref(ctx)
     }
 }

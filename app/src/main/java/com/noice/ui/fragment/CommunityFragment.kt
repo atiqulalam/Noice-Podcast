@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.noice.R
-
+/**
+ * Created By Atiq
+ */
 class CommunityFragment : Fragment() {
 
     override fun onCreateView(
