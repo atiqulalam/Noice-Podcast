@@ -19,23 +19,23 @@ import com.noice.model.Banner
 import com.noice.model.Comment
 import com.noice.ui.adapter.DetailPagerAdapter
 import com.noice.utils.ImageUtils
-import com.noice.viewmodel.PodCastDetailViewModel
+import com.noice.viewmodel.DetailViewModel
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.greenrobot.eventbus.EventBus
 
 class DetailActivity : AppCompatActivity() {
 
     private var tabAdapter: DetailPagerAdapter? = null
-    private var podCast: Banner? = null
-    private lateinit var viewModel : PodCastDetailViewModel
+    private var banner: Banner? = null
+    private lateinit var viewModel : DetailViewModel
     private var isSubscribed = false
 
     companion object {
-        private const val POD_CAST_DATA = "POD_CAST_DATA"
+        private const val BANNER = "BANNER"
 
         fun start(ctx: Context, podCast: Banner) {
             val intent = Intent(ctx, DetailActivity::class.java)
-            intent.putExtra(POD_CAST_DATA, podCast)
+            intent.putExtra(BANNER, podCast)
             ctx.startActivity(intent)
         }
     }
@@ -43,13 +43,13 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        viewModel = ViewModelProvider(this).get(PodCastDetailViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
 
         setToolbar()
 
         getDataFromIntent()
 
-        if(podCast == null) {
+        if(banner == null) {
             finish()
             return
         }
@@ -66,14 +66,14 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun getDataFromIntent() {
-        if(intent.hasExtra(POD_CAST_DATA)) {
-            podCast = intent.getParcelableExtra(POD_CAST_DATA)
+        if(intent.hasExtra(BANNER)) {
+            banner = intent.getParcelableExtra(BANNER)
         }
     }
 
     private fun initViews() {
         viewPager.offscreenPageLimit = 2
-        tabAdapter = DetailPagerAdapter(supportFragmentManager, podCast!!)
+        tabAdapter = DetailPagerAdapter(supportFragmentManager, banner!!)
         viewPager.adapter = tabAdapter
         tabLayout.setupWithViewPager(viewPager)
 
@@ -118,20 +118,20 @@ class DetailActivity : AppCompatActivity() {
             false
         }
 
-        if(podCast?.image_url != null) {
-            ImageUtils.setImageByUrlAndCache(this, podCastImage, podCast?.image_url)
+        if(banner?.image_url != null) {
+            ImageUtils.setImageByUrlAndCache(this, podCastImage, banner?.image_url)
         }
 
-        if(podCast?.title != null) {
-            txtTitle.text = podCast?.title
+        if(banner?.title != null) {
+            txtTitle.text = banner?.title
         }
 
-        if(podCast?.subscriber != null) {
-            txtBookMarkCount.text = podCast?.subscriber.toString()
+        if(banner?.subscriber != null) {
+            txtBookMarkCount.text = banner?.subscriber.toString()
         }
 
-        if(podCast?.view != null) {
-            txtViews.text = podCast?.view.toString()
+        if(banner?.view != null) {
+            txtViews.text = banner?.view.toString()
         }
 
         txtSubscribe.setOnClickListener {
@@ -140,14 +140,14 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun getIsSubscribed() {
-        viewModel.getIsSubscribed(podCast?.id.toString()).observe(this, Observer {
+        viewModel.getIsSubscribed(banner?.id.toString()).observe(this, Observer {
             isSubscribed = it?.data ?: false
             setSubscribeButton()
         })
     }
 
     private fun subscribe() {
-        viewModel.subscribe(podCast?.id.toString()).observe(this, Observer {
+        viewModel.subscribe(banner?.id.toString()).observe(this, Observer {
             isSubscribed = it?.data ?: false
             setSubscribeButton()
         })
@@ -164,7 +164,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.pod_cast_detail_menu, menu)
+        menuInflater.inflate(R.menu.detail_menu, menu)
         return true
     }
 

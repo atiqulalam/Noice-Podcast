@@ -14,7 +14,7 @@ import com.noice.model.Episode
 import com.noice.ui.adapter.EpisodeAdapter
 import com.noice.ui.view.ErrorView
 import com.noice.utils.ResponseStatus
-import com.noice.viewmodel.PodCastDetailViewModel
+import com.noice.viewmodel.DetailViewModel
 
 import kotlinx.android.synthetic.main.fragment_episodes.*
 /**
@@ -37,7 +37,7 @@ class EpisodesFragment : Fragment() {
     private var banner: Banner? = null
     private var episodeAdapter: EpisodeAdapter? = null
     private var episodes = ArrayList<Episode>()
-    private lateinit var viewModel: PodCastDetailViewModel
+    private lateinit var viewModel: DetailViewModel
     private lateinit var ctx: Context
 
     override fun onAttach(context: Context) {
@@ -55,7 +55,7 @@ class EpisodesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(PodCastDetailViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         return inflater.inflate(R.layout.fragment_episodes, container, false)
     }
 
@@ -82,6 +82,10 @@ class EpisodesFragment : Fragment() {
             }
         })
     }
+
+    /**
+     * Initially display local data, and after API response display latest data to User
+     */
 
     private fun getEpisodes() {
         if(banner?.id == null)

@@ -18,22 +18,14 @@ class DetailRepository {
     fun getComments() : MutableLiveData<Resource<List<Comment>>> {
 
         val mutableData = MutableLiveData<Resource<List<Comment>>>()
-        val str = NoiceApplication.sharedNoicePref.getComments()
-        if(str.isNotEmpty()) {
-            val listType = object : TypeToken<ArrayList<Comment>>() {}.type
-            val list: ArrayList<Comment> = Gson().fromJson(str, listType)
-            mutableData.postValue(Resource.success(list))
-        }
         NoiceApplication.doServerCall({ NetworkRequests.getComments()},
             object : RestInterface<ResponseList<Comment>> {
 
                 override fun onCustomError(e: CustomError) {
-                    if (str.isEmpty())
                     mutableData.postValue(Resource.error(e.message, null))
                 }
 
                 override fun onError(e: Throwable) {
-                    if (str.isEmpty())
                     mutableData.postValue(Resource.error(Resource.GENERIC_ERROR, null))
                 }
 

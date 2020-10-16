@@ -10,7 +10,7 @@ import com.noice.model.Comment
 import com.noice.repository.DetailRepository
 import kotlinx.coroutines.Dispatchers
 
-class PodCastDetailViewModel : ViewModel() {
+class DetailViewModel : ViewModel() {
 
     private val repository = DetailRepository()
 
@@ -64,18 +64,13 @@ class PodCastDetailViewModel : ViewModel() {
         emit(Resource.success(true))
     }
 
-    fun getSavedSavedComments(podCastId: String) = liveData(Dispatchers.IO) {
+    fun getGetSavedComments() = liveData(Dispatchers.IO) {
         val str = NoiceApplication.sharedNoicePref.getComments()
         if(str.isNotEmpty()) {
             val listType = object : TypeToken<ArrayList<Comment>>() {}.type
             val list : ArrayList<Comment> = Gson().fromJson(str, listType)
-
-            list.filter {
-                it.id.toString() == podCastId
-            }.let {
-                emit(Resource.success(it))
-                return@liveData
-            }
+            emit(Resource.success(list))
+            return@liveData
         }
 
         emit(Resource.success(ArrayList()))

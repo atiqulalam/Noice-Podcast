@@ -9,5 +9,5 @@
 
     <item
         app:showAsAction="never"
-        android:title="@string/example"/>
+        android:title="@string/show_info"/>
 </menu>

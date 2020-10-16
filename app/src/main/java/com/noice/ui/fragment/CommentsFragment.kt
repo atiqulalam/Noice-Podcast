@@ -13,7 +13,7 @@ import com.noice.model.Comment
 import com.noice.model.Episode
 import com.noice.model.User
 import com.noice.ui.adapter.CommentAdapter
-import com.noice.viewmodel.PodCastDetailViewModel
+import com.noice.viewmodel.DetailViewModel
 import com.noice.utils.ResponseStatus
 import com.noice.utils.Utils
 import com.noice.ui.view.ErrorView
@@ -39,7 +39,7 @@ class CommentsFragment : Fragment() {
 
     private var banner: Banner? = null
     private var commentAdapter: CommentAdapter? = null
-    private lateinit var viewModel: PodCastDetailViewModel
+    private lateinit var viewModel: DetailViewModel
     private var commentList = ArrayList<Comment>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,15 +52,12 @@ class CommentsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(PodCastDetailViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         return inflater.inflate(R.layout.fragment_comments, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        errorView.showLoading()
-
         initViews()
 
         if(banner?.id != null) {
@@ -82,20 +79,25 @@ class CommentsFragment : Fragment() {
     }
 
     private fun getComments() {
+        getLocallySavedComments()
         viewModel.getComments().observe(this, Observer {
             if(it?.status == ResponseStatus.SUCCESS && !it.data.isNullOrEmpty()) {
-                commentList.clear()
+                errorView.hideLoading()
                 commentList.addAll(it.data)
+                commentAdapter?.notifyDataSetChanged()
             }
-
-            getLocallySavedComments()
         })
     }
 
+    /**
+     * Initially display local data, and after API response merged with local data display to user
+     */
+
     private fun getLocallySavedComments() {
         if(banner?.id != null) {
-            viewModel.getSavedSavedComments(banner?.id.toString()).observe(this, Observer {
+            viewModel.getGetSavedComments().observe(this, Observer {
                 if(!it.data.isNullOrEmpty()) {
+                    commentList.clear()
                     commentList.addAll(it.data)
                     commentAdapter?.notifyDataSetChanged()
                     errorView.hideLoading()
