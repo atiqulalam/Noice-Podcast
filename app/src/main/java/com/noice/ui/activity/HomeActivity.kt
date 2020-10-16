@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.noice.R
-import com.noice.ui.fragment.*
+import com.noice.ui.fragment.CommunityFragment
+import com.noice.ui.fragment.DiscoverFragment
+import com.noice.ui.fragment.LibraryFragment
+import com.noice.ui.fragment.PersonalFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
