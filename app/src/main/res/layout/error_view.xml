@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/errorViewMainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:id="@+id/errorLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/grey"
+            android:lineSpacingExtra="7sp"
+            android:gravity="center_horizontal"
+            android:text="@string/generic_error"
+            android:fontFamily="@font/asap_medium"/>
+
+        <TextView
+            android:id="@+id/txtRetry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_5dp"
+            android:padding="@dimen/size_5dp"
+            android:textSize="13sp"
+            android:textColor="#da2a51"
+            android:gravity="center_horizontal"
+            android:text="@string/retry"
+            android:fontFamily="@font/arimo_bold"/>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/size_40dp"
+        android:layout_height="@dimen/size_40dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:indeterminate="true"
+        android:indeterminateDuration="800"/>
+</FrameLayout>

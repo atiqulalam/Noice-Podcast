@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/size_8dp">
+
+    <ImageView
+        android:id="@+id/episodeImage"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:id="@+id/download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_file_download"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/episodeTitle"
+        android:layout_width="@dimen/size_0dp"
+        android:layout_height="@dimen/size_0dp"
+        android:layout_marginStart="@dimen/size_12dp"
+        android:layout_marginEnd="@dimen/size_16dp"
+        android:layout_marginBottom="@dimen/size_8dp"
+        android:ellipsize="end"
+        tools:text="What can Rishis see that you can't?"
+        android:textColor="@color/black"
+        android:textSize="@dimen/size_14sp"
+        app:layout_constraintStart_toEndOf="@id/episodeImage"
+        app:layout_constraintEnd_toStartOf="@id/download"
+        app:layout_constraintTop_toTopOf="@id/episodeImage"
+        app:layout_constraintBottom_toTopOf="@id/episodeDate"
+        android:layout_marginLeft="@dimen/size_12dp"
+        android:layout_marginRight="@dimen/size_16dp" />
+
+    <TextView
+        android:id="@+id/episodeDate"
+        android:layout_width="@dimen/size_0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:drawableStart="@drawable/ic_calendar"
+        android:drawablePadding="@dimen/size_8dp"
+        tools:text="Feb 26"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/size_12sp"
+        app:layout_constraintStart_toStartOf="@id/episodeTitle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:drawableLeft="@drawable/ic_calendar" />
+
+    <TextView
+        android:id="@+id/episodeDuration"
+        android:layout_width="@dimen/size_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12dp"
+        android:gravity="center_vertical"
+        android:drawableStart="@drawable/ic_timer"
+        android:drawablePadding="@dimen/size_8dp"
+        tools:text="18:25"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/size_12sp"
+        app:layout_constraintStart_toEndOf="@id/episodeDate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="@dimen/size_12dp"
+        android:drawableLeft="@drawable/ic_timer" />
+</androidx.constraintlayout.widget.ConstraintLayout>
