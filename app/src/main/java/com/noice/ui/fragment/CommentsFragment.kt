@@ -8,10 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.noice.R
-import com.noice.model.Banner
-import com.noice.model.Comment
-import com.noice.model.Episode
-import com.noice.model.User
+import com.noice.model.*
 import com.noice.ui.adapter.CommentAdapter
 import com.noice.viewmodel.DetailViewModel
 import com.noice.utils.ResponseStatus
@@ -132,6 +129,19 @@ class CommentsFragment : Fragment() {
                 }
             })
         }
+    }
+
+
+
+
+
+    @Subscribe
+    fun saveChildComment(eventObject: EventObject) {
+        viewModel.saveChildComment(eventObject.data as Comment,(eventObject.data).parentId.toString()).observe(this, Observer {
+            if(it?.data == true) {
+                commentAdapter?.notifyDataSetChanged()
+            }
+        })
     }
 
     @Subscribe

@@ -25,6 +25,13 @@ class NoicePref(ctx: Context) {
         editor.putString(COMMENTS, string)
         editor.apply()
     }
+
+    fun saveChildComments(string: String,commentId:String) {
+        val editor = sharedPref.edit()
+        editor.putString(commentId, string)
+        editor.apply()
+    }
+
     fun saveBanners(string: String) {
         val editor = sharedPref.edit()
         editor.putString(BANNERS, string)
@@ -43,6 +50,10 @@ class NoicePref(ctx: Context) {
 
     fun getComments() : String {
         return sharedPref.getString(COMMENTS, "") ?: ""
+    }
+
+    fun getChildComments(commentId:String) : String {
+        return sharedPref.getString(commentId, "") ?: ""
     }
 
     fun getBanners() : String {

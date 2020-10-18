@@ -64,6 +64,33 @@ class DetailViewModel : ViewModel() {
         emit(Resource.success(true))
     }
 
+    fun saveChildComment(comment: Comment,commentId:String) = liveData(Dispatchers.IO) {
+        val str = NoiceApplication.sharedNoicePref.getChildComments(commentId)
+        val commentsList = ArrayList<Comment>()
+        if(str.isNotEmpty()) {
+            val listType = object : TypeToken<ArrayList<Comment>>() {}.type
+            val list : ArrayList<Comment> = Gson().fromJson(str, listType)
+            commentsList.addAll(list)
+        }
+
+        commentsList.add(comment)
+        NoiceApplication.sharedNoicePref.saveChildComments(Gson().toJson(commentsList),commentId)
+        emit(Resource.success(true))
+    }
+
+
+    fun getGetSavedChildComments(commentId:String) = liveData(Dispatchers.IO) {
+        val str = NoiceApplication.sharedNoicePref.getChildComments(commentId)
+        if(str.isNotEmpty()) {
+            val listType = object : TypeToken<ArrayList<Comment>>() {}.type
+            val list : ArrayList<Comment> = Gson().fromJson(str, listType)
+            emit(Resource.success(list))
+            return@liveData
+        }
+
+        emit(Resource.success(ArrayList()))
+    }
+
     fun getGetSavedComments() = liveData(Dispatchers.IO) {
         val str = NoiceApplication.sharedNoicePref.getComments()
         if(str.isNotEmpty()) {
